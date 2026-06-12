@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Beverages — Lim Kok Tong</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header><h1>Beverages</h1></header>
+    <nav>
+        <a href="index.html">Menu</a>
+        <a href="appetizers.html">Appetizers</a>
+        <a href="main-courses.html">Main Courses</a>
+        <a href="desserts.html">Desserts</a>
+        <a href="beverages.html">Beverages</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="hero"><h2>Beverages</h2><p>Quench your thirst.</p></div>
+
+    <div class="container">
+        <div class="section" id="beverages">
+            <h2>Beverages</h2>
+            <div class="menu-category">
+                <div class="menu-item">
+                    <div class="menu-item-name">House Red Wine</div>
+                    <div class="menu-item-description">Glass of premium Italian red</div>
+                    <div class="menu-item-price">$6.99</div>
+                    <input type="text" class="modifier-input" placeholder="Modifiers (e.g., double pour)">
+                    <button class="add-to-cart-btn" onclick="addToCart('House Red Wine', 6.99, this.closest('.menu-item').querySelector('.modifier-input').value)">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Cappuccino</div>
+                    <div class="menu-item-description">Rich espresso with steamed milk and foam</div>
+                    <div class="menu-item-price">$3.99</div>
+                    <input type="text" class="modifier-input" placeholder="Modifiers (e.g., soy milk)">
+                    <button class="add-to-cart-btn" onclick="addToCart('Cappuccino', 3.99, this.closest('.menu-item').querySelector('.modifier-input').value)">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Fresh Lemonade</div>
+                    <div class="menu-item-description">Freshly squeezed lemon juice with a touch of mint</div>
+                    <div class="menu-item-price">$3.49</div>
+                    <input type="text" class="modifier-input" placeholder="Modifiers (e.g., less sugar)">
+                    <button class="add-to-cart-btn" onclick="addToCart('Fresh Lemonade', 3.49, this.closest('.menu-item').querySelector('.modifier-input').value)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section cart-section" id="cart">
+            <h2>Shopping Cart</h2>
+            <div class="cart-items" id="cart-items-container"><div class="empty-cart">Your cart is empty</div></div>
+            <div class="cart-summary">
+                <div>Subtotal: $<span id="subtotal">0.00</span></div>
+                <div>Tax (10%): $<span id="tax">0.00</span></div>
+                <div class="cart-total">Total: $<span id="total">0.00</span></div>
+            </div>
+        </div>
+
+        <div class="section checkout-form" id="checkout">
+            <h2>Checkout</h2>
+            <form onsubmit="submitOrder(event)">
+                <div class="form-group">
+                    <label for="order-notes">Order Notes (Optional)</label>
+                    <textarea id="order-notes" name="order-notes" placeholder="Any overall instructions for the kitchen"></textarea>
+                </div>
+                <button type="submit" class="checkout-btn" id="checkout-btn">Place Order</button>
+            </form>
+        </div>
+
+    </div>
+    <footer>&copy; 2024 Restaurant. All rights reserved.</footer>
+    <script src="../js/cart.js"></script>
+</body>
+</html>

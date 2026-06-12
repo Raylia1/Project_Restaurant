@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cashier Dashboard</title>
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <style>
+        .cashier-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .order-card {
+            background: #fffaf5;
+            border: 2px solid #b5883e;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .order-status {
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-weight: bold;
+            background: #f3e6dc;
+        }
+
+        .order-items {
+            margin-top: 1rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding: 0.5rem 0;
+        }
+
+        .notes {
+            margin-top: 1rem;
+            background: #f3e6dc;
+            padding: 0.75rem;
+            border-radius: 6px;
+        }
+
+        .cashier-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .complete-btn {
+            background: #b5883e;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .complete-btn:hover {
+            background: #9a6f34;
+        }
+
+        .delete-btn {
+            background: #a33f2b;
+            color: white;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #7a2f21;
+        }
+
+        .empty-order {
+            text-align: center;
+            padding: 2rem;
+            background: #fffaf5;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Cashier Dashboard</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Customer Menu</a>
+        <a href="cashier.html">Cashier</a>
+    </nav>
+
+    <div class="cashier-container">
+
+        <h2>Incoming Orders</h2>
+
+        <div id="orders-container">
+
+        </div>
+
+    </div>
+
+<script>
+
+    const API_URL = 'http://3.211.41.147:5000/api/orders';
+
+    async function getOrders() {
+
+        const response = await fetch(API_URL);
+
+        return await response.json();
+    }
+
+    async function renderOrders() {
+
+        const container = document.getElementById('orders-container');
+
+        container.innerHTML = '';
+
+        try {
+
+            const orders = await getOrders();
+
+            if (!orders.length) {
+
+                container.innerHTML = `
+                    <div class="empty-order">
+                        <h3>No incoming orders</h3>
+                    </div>
+                `;
+
+                return;
+            }
+
+            orders.forEach(order => {
+
+                const card = document.createElement('div');
+
+                card.className = 'order-card';
+
+                let itemsHTML = '';
+
+                if (order.items && order.items.length) {
+
+                    order.items.forEach(item => {
+
+                        itemsHTML += `
+                            <div class="order-item">
+                                <div>
+                                    <strong>${item.item_name}</strong><br>
+                                    Qty: ${item.qty}
+                                    ${item.modifiers ? `<br><small>${item.modifiers}</small>` : ''}
+                                </div>
+
+                                <div>
+                                    $${(item.price * item.qty).toFixed(2)}
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+
+                card.innerHTML = `
+                    <div class="order-header">
+
+                        <h3>Order #${order.id}</h3>
+
+                        <div class="order-status">
+                            ${order.status}
+                        </div>
+
+                    </div>
+
+                    <div class="order-items">
+                        ${itemsHTML}
+                    </div>
+
+                    <div class="notes">
+
+                        <strong>Notes:</strong><br>
+
+                        ${order.notes || 'No notes'}
+
+                    </div>
+
+                    <div class="cart-summary" style="margin-top:1rem;">
+
+                        <div>
+                            Subtotal:
+                            $${Number(order.subtotal).toFixed(2)}
+                        </div>
+
+                        <div>
+                            Tax:
+                            $${Number(order.tax).toFixed(2)}
+                        </div>
+
+                        <div class="cart-total">
+                            Total:
+                            $${Number(order.total).toFixed(2)}
+                        </div>
+
+                    </div>
+
+                    <div class="cashier-actions">
+
+                        <button
+                            class="complete-btn"
+                            onclick="completeOrder(${order.id})">
+
+                            Complete Order
+
+                        </button>
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteOrder(${order.id})">
+
+                            Delete
+
+                        </button>
+
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+
+        } catch (error) {
+
+            console.error(error);
+
+            container.innerHTML = `
+                <div class="empty-order">
+                    <h3>Failed to load orders</h3>
+                </div>
+            `;
+        }
+    }
+
+    async function completeOrder(id) {
+
+    try {
+
+        const response = await fetch(
+            `${API_URL}/${id}`,
+            {
+                method: 'PUT'
+            }
+        );
+
+        const result = await response.json();
+
+        console.log(result);
+
+        alert(result.message);
+
+        renderOrders();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert('Failed to complete order');
+    }
+}
+
+    async function deleteOrder(id) {
+
+        if (!confirm('Delete this order?')) {
+            return;
+        }
+
+        try {
+
+            await fetch(
+                `${API_URL}/${id}`,
+                {
+                    method: 'DELETE'
+                }
+            );
+
+            renderOrders();
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert('Failed to delete order');
+        }
+    }
+
+    document.addEventListener(
+        'DOMContentLoaded',
+        renderOrders
+    );
+
+
+</script>
+
+</body>
+</html>

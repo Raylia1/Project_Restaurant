@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Desserts — Lim Kok Tong</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header><h1>Desserts</h1></header>
+    <nav>
+        <a href="index.html">Menu</a>
+        <a href="appetizers.html">Appetizers</a>
+        <a href="main-courses.html">Main Courses</a>
+        <a href="desserts.html">Desserts</a>
+        <a href="beverages.html">Beverages</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="hero"><h2>Desserts</h2><p>Sweet endings.</p></div>
+
+    <div class="container">
+        <div class="section" id="desserts">
+            <h2>Desserts</h2>
+            <div class="menu-category">
+                <div class="menu-item">
+                    <div class="menu-item-name">Tiramisu</div>
+                    <div class="menu-item-description">Classic Italian dessert with layers of mascarpone and coffee</div>
+                    <div class="menu-item-price">$6.99</div>
+                    <input type="text" class="modifier-input" placeholder="Modifiers (e.g., extra cream)">
+                    <button class="add-to-cart-btn" onclick="addToCart('Tiramisu', 6.99, this.closest('.menu-item').querySelector('.modifier-input').value)">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Chocolate Lava Cake</div>
+                    <div class="menu-item-description">Warm chocolate cake with a flowing molten center, served with vanilla ice cream</div>
+                    <div class="menu-item-price">$7.99</div>
+                    <input type="text" class="modifier-input" placeholder="Modifiers (e.g., extra sauce)">
+                    <button class="add-to-cart-btn" onclick="addToCart('Chocolate Lava Cake', 7.99, this.closest('.menu-item').querySelector('.modifier-input').value)">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Panna Cotta</div>
+                    <div class="menu-item-description">Silky smooth Italian custard topped with fresh berries</div>
+                    <div class="menu-item-price">$5.99</div>
+                    <input type="text" class="modifier-input" placeholder="Modifiers (e.g., berry on side)">
+                    <button class="add-to-cart-btn" onclick="addToCart('Panna Cotta', 5.99, this.closest('.menu-item').querySelector('.modifier-input').value)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section cart-section" id="cart">
+            <h2>Shopping Cart</h2>
+            <div class="cart-items" id="cart-items-container"><div class="empty-cart">Your cart is empty</div></div>
+            <div class="cart-summary">
+                <div>Subtotal: $<span id="subtotal">0.00</span></div>
+                <div>Tax (10%): $<span id="tax">0.00</span></div>
+                <div class="cart-total">Total: $<span id="total">0.00</span></div>
+            </div>
+        </div>
+
+        <div class="section checkout-form" id="checkout">
+            <h2>Checkout</h2>
+            <form onsubmit="submitOrder(event)">
+                <div class="form-group">
+                    <label for="order-notes">Order Notes (Optional)</label>
+                    <textarea id="order-notes" name="order-notes" placeholder="Any overall instructions for the kitchen"></textarea>
+                </div>
+                <button type="submit" class="checkout-btn" id="checkout-btn">Place Order</button>
+            </form>
+        </div>
+
+    </div>
+    <footer>&copy; 2024 Restaurant. All rights reserved.</footer>
+    <script src="../js/cart.js"></script>
+</body>
+</html>

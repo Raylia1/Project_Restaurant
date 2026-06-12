@@ -1,0 +1,20 @@
+services:
+
+  frontend:
+    image: raylia/project_restaurant:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+
+  api:
+    image: raylia/restaurant-api:latest
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: restaurant_dbs

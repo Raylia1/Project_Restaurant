@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Appetizers — Lim Kok Tong</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header><h1>Appetizers</h1></header>
+    <nav>
+        <a href="index.html">Menu</a>
+        <a href="appetizers.html">Appetizers</a>
+        <a href="main-courses.html">Main Courses</a>
+        <a href="desserts.html">Desserts</a>
+        <a href="beverages.html">Beverages</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="hero"><h2>Appetizers</h2><p>Start your meal with our small plates.</p></div>
+
+    <div class="container">
+        <div class="section" id="appetizers">
+            <h2>Appetizers</h2>
+            <div class="menu-category">
+                <div class="menu-item">
+                    <div class="menu-item-name">Bruschetta al Pomodoro</div>
+                    <div class="menu-item-description">Crispy bread topped with fresh tomatoes, garlic, and basil</div>
+                    <div class="menu-item-price">$8.99</div>
+                    <input type="text" class="modifier-input" placeholder="Modifiers (e.g., extra cheese, no onions)">
+                    <button class="add-to-cart-btn" onclick="addToCart('Bruschetta al Pomodoro', 8.99, this.closest('.menu-item').querySelector('.modifier-input').value)">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Calamari Fritti</div>
+                    <div class="menu-item-description">Golden fried squid rings with marinara sauce</div>
+                    <div class="menu-item-price">$10.99</div>
+                    <input type="text" class="modifier-input" placeholder="Modifiers (e.g., extra spicy, gluten-free)">
+                    <button class="add-to-cart-btn" onclick="addToCart('Calamari Fritti', 10.99, this.closest('.menu-item').querySelector('.modifier-input').value)">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-name">Garlic Shrimp</div>
+                    <div class="menu-item-description">Succulent shrimp sautéed in garlic and white wine</div>
+                    <div class="menu-item-price">$11.99</div>
+                    <input type="text" class="modifier-input" placeholder="Modifiers (e.g., less salt)">
+                    <button class="add-to-cart-btn" onclick="addToCart('Garlic Shrimp', 11.99, this.closest('.menu-item').querySelector('.modifier-input').value)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- cart + checkout (same IDs as index) -->
+        <div class="section cart-section" id="cart">
+            <h2>Shopping Cart</h2>
+            <div class="cart-items" id="cart-items-container"><div class="empty-cart">Your cart is empty</div></div>
+            <div class="cart-summary">
+                <div>Subtotal: $<span id="subtotal">0.00</span></div>
+                <div>Tax (10%): $<span id="tax">0.00</span></div>
+                <div class="cart-total">Total: $<span id="total">0.00</span></div>
+            </div>
+        </div>
+
+        <div class="section checkout-form" id="checkout">
+            <h2>Checkout</h2>
+            <form onsubmit="submitOrder(event)">
+                <div class="form-group">
+                    <label for="order-notes">Order Notes (Optional)</label>
+                    <textarea id="order-notes" name="order-notes" placeholder="Any overall instructions for the kitchen"></textarea>
+                </div>
+                <button type="submit" class="checkout-btn" id="checkout-btn">Place Order</button>
+            </form>
+        </div>
+
+    </div>
+    <footer>&copy; 2024 Restaurant. All rights reserved.</footer>
+    <script src="../js/cart.js"></script>
+</body>
+</html>

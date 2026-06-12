@@ -1,0 +1,65 @@
+:root{
+    --bg-dark: #4b2e24;
+    --nav-bg: #6b4c3b;
+    --accent: #b5883e;
+    --accent-dark: #9a6f34;
+    --panel-bg: #f3e6dc;
+    --card-bg: #fffaf5;
+    --danger: #a33f2b;
+    --text-dark: #2c3e36;
+}
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html, body { width: 100%; min-height: 100vh; overflow-x: hidden }
+body { font-family: Arial, sans-serif; line-height: 1.6; color: var(--text-dark); font-size: 16px }
+header { background: var(--bg-dark); color: #fff8f2; padding: 1.5rem 0; text-align: center }
+header h1 { font-size: clamp(1.5rem, 5vw, 2.5rem); margin: 0 }
+nav { background: var(--nav-bg); padding: 1rem; text-align: center }
+nav a { color: #fff8f2; margin: 0 0.5rem; text-decoration: none; font-size: clamp(0.8rem, 2vw, 1rem) }
+nav a:hover { color: var(--accent) }
+.hero { background: linear-gradient(rgba(75,46,36,0.55), rgba(75,46,36,0.55)), url('restaurant.jpg'); background-size: cover; color: #fff8f2; text-align: center; padding: 6rem 1.5rem }
+.hero h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 0.5rem }
+.hero p { font-size: clamp(0.9rem, 2.5vw, 1.2rem) }
+.container { max-width: 1200px; margin: 2.5rem auto; padding: 0 1.25rem }
+.section { margin: 2rem 0 }
+.section h2 { color: var(--bg-dark); margin-bottom: 0.75rem; font-size: clamp(1.4rem, 3.2vw, 2rem) }
+.section p { font-size: 1.05rem }
+.menu-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem }
+.menu-category { background: var(--panel-bg); padding: 1.25rem; border-radius: 8px }
+.menu-category h3 { color: var(--bg-dark); font-size: 1.25rem; margin-bottom: 0.75rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem }
+.menu-item { background: var(--card-bg); padding: 0.9rem; border-radius: 6px; margin-bottom: 1rem }
+.menu-item-name { font-weight: 700; color: var(--bg-dark); margin-bottom: 0.25rem }
+.menu-item-description { color: #6b6b6b; margin-bottom: 0.5rem }
+.menu-item-price { color: var(--accent); font-weight: 700; margin-bottom: 0.5rem }
+.modifier-input { width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 4px; border: 1px solid #ddd }
+.add-to-cart-btn { background: var(--accent); color: #2b1b12; border: none; padding: 0.55rem; border-radius: 6px; cursor: pointer; font-weight: 700 }
+.add-to-cart-btn:hover { background: var(--accent-dark) }
+.cart-section { background: var(--panel-bg); padding: 1.25rem; border-radius: 8px; border: 2px solid var(--accent); margin-top: 1.5rem }
+.cart-items { background: #ffffff; padding: 0.75rem; border-radius: 6px; min-height: 80px }
+.cart-item { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid #eee }
+.cart-item:last-child { border-bottom: none }
+.cart-item-info { flex: 1 }
+.cart-item-modifiers { color: #6b6b6b; font-size: 0.9rem; margin-top: 0.25rem }
+.remove-btn { background: var(--danger); color: #fff8f2; border: none; padding: 0.35rem 0.6rem; border-radius: 4px; cursor: pointer }
+.remove-btn:hover { background: #7a2f21 }
+.cart-summary { background: var(--bg-dark); color: #fff8f2; padding: 1rem; border-radius: 6px; text-align: right; margin-top: 0.75rem }
+.cart-total { font-size: 1.25rem; font-weight: 700 }
+.checkout-form { background: var(--panel-bg); padding: 1rem; border-radius: 8px; margin-top: 1rem }
+.form-group { margin-bottom: 0.75rem }
+.form-group label { display: block; font-weight: 700; margin-bottom: 0.5rem }
+.form-group textarea { width: 100%; min-height: 90px; padding: 0.6rem; border-radius: 6px; border: 1px solid #ddd }
+.checkout-btn { background: var(--accent); color: #2b1b12; border: none; padding: 0.75rem; border-radius: 6px; width: 100%; font-weight: 700 }
+.checkout-btn:hover { background: var(--accent-dark) }
+footer { background: var(--bg-dark); color: #fff8f2; text-align: center; padding: 1.5rem; margin-top: 2rem }
+@media (min-width: 1200px) {
+    .hero { padding: 8rem 2rem }
+    .container { margin-top: 3rem }
+}
+@media (max-width: 768px) {
+    .hero { padding: 4rem 1rem }
+    .container { padding: 0 1rem }
+}
+@media (max-width: 480px) {
+    nav a { display: block; margin: 0.35rem 0 }
+    .menu-categories { gap: 1rem }
+    .hero { padding: 2.5rem 1rem }
+}
