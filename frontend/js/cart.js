@@ -134,7 +134,7 @@ async function submitOrder(e) {
     try {
 
         const response = await fetch(
-            'http://3.211.41.147:5000/api/orders',
+            'http://54.83.32.24:5000/api/orders',
             {
                 method: 'POST',
                 headers: {
